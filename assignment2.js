@@ -1,8 +1,11 @@
-﻿const POLYGON_API_KEY = "TStf1q72qjcRa_Z3MjM03GSrLdzn27XO"; // Replace with your Polygon API key
+﻿
+const POLYGON_API_KEY = "TStf1q72qjcRa_Z3MjM03GSrLdzn27XO";  
+// Polygon API key for stock data
 let stockChart = null;
 let breedMap = {};
 let swiperInstance = null;
 
+// Navigation and UI functions
 function navigatePage(page) {
     const normalized = page.trim().toLowerCase();
     if (normalized.includes('home')) {
@@ -18,6 +21,7 @@ function setPageColor(color) {
     document.body.style.backgroundColor = color;
 }
 
+//Annyang voice commands
 function enableAudio() {
     if (!window.annyang) {
         alert('Annyang is not available. Please check your browser and network connection.');
@@ -72,6 +76,7 @@ function initAnnyang() {
     annyang.setLanguage('en-US');
 }
 
+// Quote API: https://zenquotes.io/api/random
 async function fetchQuote() {
     const quoteText = document.getElementById('quote-text');
     const quoteAuthor = document.getElementById('quote-author');
@@ -92,6 +97,7 @@ async function fetchQuote() {
     }
 }
 
+//Stocks APIs 
 function makeLabelsFromEpoch(results) {
     return results.map(point => {
         const date = new Date(point.t);
@@ -210,6 +216,7 @@ async function fetchTopStocks() {
     }
 }
 
+// Dog API: https://dogapi.dog/api/v2/breeds and https://dog.ceo/api/breeds/image/random/10
 async function fetchDogImages() {
     const wrapper = document.getElementById('dog-slide-wrapper');
     try {
@@ -293,8 +300,10 @@ function showBreedInfo(breed) {
     document.getElementById('breed-min-life').textContent = minLife;
     document.getElementById('breed-max-life').textContent = maxLife;
     document.getElementById('breed-info').classList.remove('hidden');
-}
+} 
 
+
+// Initialize everything once the DOM is fully loaded
 window.addEventListener('DOMContentLoaded', () => {
     initAnnyang();
     if (document.body.dataset.page === 'home') {
