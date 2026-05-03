@@ -241,7 +241,7 @@ async function fetchDogBreeds() {
     buttonContainer.innerHTML = 'Loading breed buttons...';
 
     try {
-        const response = await fetch('https://dogapi.dog/api/v2');
+        const response = await fetch('https://dogapi.dog/api/v2/breeds');
         if (!response.ok) {
             throw new Error(`API returned status ${response.status}`);
         }
