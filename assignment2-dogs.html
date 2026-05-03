@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INST377 - Doggos</title>
+    <link rel="stylesheet" href="assignment2.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+</head>
+<body data-page="dogs">
+    <header>
+        <div class="topbar">
+            <h1>INST377 - Activities</h1>
+            <nav>
+                <a href="assignment2.html">Home</a>
+                <a href="assignment2-stock.html">Stocks</a>
+                <a href="assignment2-dogs.html">Dogs</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-intro">
+            <h2>Doggos! 🐶</h2>
+            <div class="swiper-wrapper-container">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper" id="dog-slide-wrapper"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="breed-buttons" id="breed-buttons"></div>
+            <div class="breed-info-card hidden" id="breed-info">
+                <h3 id="breed-title"></h3>
+                <p id="breed-description"></p>
+                <p><strong>Min Life:</strong> <span id="breed-min-life"></span></p>
+                <p><strong>Max Life:</strong> <span id="breed-max-life"></span></p>
+            </div>
+        </section>
+    </main>
+
+    <section class="audio-panel">
+        <h2>In this web page there are options to Navigate using Audio!</h2>
+        <p>Ensure your Mic is enabled to use this feature.</p>
+        <ul>
+            <li>Load a dog breed from audio</li>
+            <li><strong>Say:</strong> Load Dog Breed &lt;Dog Breed Name&gt;</li>
+            <li>Navigate to a Different Page</li>
+            <li><strong>Say:</strong> Navigate to &lt;page&gt;</li>
+            <li>Change the Page Color</li>
+            <li><strong>Say:</strong> Change the color to &lt;color&gt;</li>
+            <li>Say Hello Back to you!</li>
+            <li><strong>Say:</strong> Hello</li>
+        </ul>
+        <div class="audio-controls">
+            <button class="control-button" onclick="enableAudio()">Turn On Listening</button>
+            <button class="control-button" onclick="disableAudio()">Turn Off Listening</button>
+        </div>
+        <p class="note">Audio requires the Annyang library and microphone permission.</p>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="assignment2.js"></script>
+</body>
+</html>

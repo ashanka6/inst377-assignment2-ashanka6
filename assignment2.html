@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INST377 - Activities</title>
+    <link rel="stylesheet" href="assignment2.css" />
+</head>
+<body data-page="home">
+    <header>
+        <div class="topbar">
+            <h1>INST377 - Activities</h1>
+            <nav>
+                <a href="assignment2.html">Home</a>
+                <a href="assignment2-stock.html">Stocks</a>
+                <a href="assignment2-dogs.html">Dogs</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>These are some different activities we can try!</h2>
+            <div class="hero-buttons">
+                <button class="feature-button" onclick="navigatePage('stocks')">Stocks</button>
+                <button class="feature-button" onclick="navigatePage('dogs')">Dogs</button>
+            </div>
+        </section>
+
+        <section class="quote-card">
+            <h3>Quote of the Page Load</h3>
+            <p id="quote-text">Loading a fresh quote...</p>
+            <p id="quote-author"></p>
+        </section>
+    </main>
+
+    <section class="audio-panel">
+        <h2>In this web page there are options to Navigate using Audio!</h2>
+        <p>Ensure your Mic is enabled to use this feature.</p>
+        <ul>
+            <li>Navigate to a Different Page</li>
+            <li><strong>Say:</strong> Navigate to &lt;page&gt;</li>
+            <li>Change the Page Color</li>
+            <li><strong>Say:</strong> Change the color to &lt;color&gt;</li>
+            <li>Say Hello Back to you!</li>
+            <li><strong>Say:</strong> Hello</li>
+        </ul>
+        <div class="audio-controls">
+            <button class="control-button" onclick="enableAudio()">Turn On Listening</button>
+            <button class="control-button" onclick="disableAudio()">Turn Off Listening</button>
+        </div>
+        <p class="note">Audio requires the Annyang library and microphone permission.</p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="assignment2.js"></script>
+</body>
+</html>

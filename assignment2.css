@@ -1,0 +1,289 @@
+﻿:root {
+    --page-bg: #ffe5c1;
+    --card-bg: #f2f2f2;
+    --panel-bg: #136846;
+    --panel-text: #f1faee;
+    --accent: #f72585;
+    --nav-bg: #dc382c;
+    --link-color: #0a0a23;
+    --button-bg: #f72585;
+    --button-text: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--page-bg);
+    color: #0a0a23;
+    min-height: 100vh;
+}
+
+.topbar {
+    background: var(--nav-bg);
+    padding: 18px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.topbar h1 {
+    margin: 0;
+    color: #0a0a23;
+}
+
+nav {
+    display: flex;
+    gap: 18px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #0a0a23;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.45);
+    color: #fff;
+}
+
+main {
+    padding: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.hero, .page-intro {
+    text-align: center;
+}
+
+.hero h2,
+.page-intro h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.feature-button,
+.lookup-button,
+.control-button,
+.breed-action {
+    border: none;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 16px 32px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-size: 1rem;
+    font-weight: 700;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.feature-button:hover,
+.lookup-button:hover,
+.control-button:hover,
+.breed-action:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+.quote-card,
+.stock-table-section,
+.audio-panel,
+.breed-info-card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    border: 2px solid #22222233;
+    padding: 24px;
+    margin: 24px auto;
+    max-width: 1000px;
+}
+
+.quote-card h3,
+.stock-table-section h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+#quote-text {
+    margin: 0;
+    font-size: 1.1rem;
+    font-style: italic;
+    text-align: center;
+}
+
+#quote-author {
+    margin-top: 12px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+}
+
+.form-row input,
+.form-row select {
+    padding: 14px 16px;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1px solid #888;
+    min-width: 220px;
+}
+
+.help-text {
+    color: #333;
+    margin-top: 10px;
+}
+
+.chart-section {
+    margin-top: 32px;
+    padding: 24px;
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #ccc;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+}
+
+th,
+td {
+    border: 1px solid #999;
+    padding: 14px 10px;
+    text-align: left;
+}
+
+th {
+    background: #f7d7e6;
+}
+
+td a {
+    color: #0a0a23;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+.audio-panel {
+    max-width: 1000px;
+    background: var(--panel-bg);
+    color: var(--panel-text);
+    margin-bottom: 24px;
+}
+
+.audio-panel h2 {
+    margin-top: 0;
+}
+
+.audio-panel ul {
+    margin: 12px 0 18px 1.15rem;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.note {
+    margin-top: 18px;
+    opacity: 0.85;
+    font-size: 0.95rem;
+}
+
+.swiper-wrapper-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.swiper {
+    width: 90%;
+    max-width: 920px;
+    height: 320px;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.breed-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.breed-action {
+    background: #ef233c;
+    padding: 12px 18px;
+    min-width: 180px;
+}
+
+.breed-info-card {
+    border-radius: 18px;
+    background: #dff6ff;
+    border: 2px solid #0d3b66;
+}
+
+.breed-info-card.hidden {
+    display: none;
+}
+
+@media (max-width: 760px) {
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .audio-controls {
+        flex-direction: column;
+    }
+}
