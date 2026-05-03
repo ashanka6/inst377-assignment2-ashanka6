@@ -1,4 +1,4 @@
-﻿const POLYGON_API_KEY = ""; // Replace with your Polygon API key
+﻿const POLYGON_API_KEY = "TStf1q72qjcRa_Z3MjM03GSrLdzn27XO"; // Replace with your Polygon API key
 let stockChart = null;
 let breedMap = {};
 let swiperInstance = null;
@@ -241,7 +241,7 @@ async function fetchDogBreeds() {
     buttonContainer.innerHTML = 'Loading breed buttons...';
 
     try {
-        const response = await fetch('https://api.dogapi.dog/v2/breeds');
+        const response = await fetch('https://dogapi.dog/api/v2');
         if (!response.ok) {
             throw new Error(`API returned status ${response.status}`);
         }
