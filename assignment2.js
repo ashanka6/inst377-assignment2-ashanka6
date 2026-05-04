@@ -76,7 +76,7 @@ function initAnnyang() {
     annyang.setLanguage('en-US');
 }
 
-// Quote API: https://zenquotes.io/api/random
+// Quote APIs
 async function fetchQuote() {
     const quoteText = document.getElementById('quote-text');
     const quoteAuthor = document.getElementById('quote-author');
@@ -182,32 +182,40 @@ async function fetchTopStocks() {
             throw new Error(`API returned status ${response.status}`);
         }
         const rawData = await response.json();
-        
-        let data = rawData;
-        if (rawData && rawData.data && Array.isArray(rawData.data)) {
-            data = rawData.data;
-        } else if (!Array.isArray(rawData)) {
-            throw new Error('Unexpected API response format');
+        const data = Array.isArray(rawData.results)
+            ? rawData.results
+            : Array.isArray(rawData.data)
+                ? rawData.data
+                : [];
+        if (!data.length) {
+            throw new Error('Unexpected API response format for top stocks');
         }
-        
-        const topFive = data.slice(0, 5);
 
+        const topFive = data.slice(0, 5);
         tbody.innerHTML = '';
         topFive.forEach(stock => {
             const row = document.createElement('tr');
+            const tickerCell = document.createElement('td');
             const link = document.createElement('a');
             link.href = `https://finance.yahoo.com/quote/${stock.ticker}`;
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
-            link.textContent = stock.ticker;
+            link.textContent = stock.ticker || stock.name || 'Unknown';
+            tickerCell.appendChild(link);
 
-            const sentiment = stock.upvotes > 1 ? '🐂 Bullish' : '🐻 Bearish';
-            row.innerHTML = `
-                <td></td>
-                <td>${stock.mentions}</td>
-                <td>${sentiment}</td>
-            `;
-            row.querySelector('td').appendChild(link);
+            const mentionsCell = document.createElement('td');
+            mentionsCell.textContent = stock.mentions ?? 'N/A';
+
+            const sentimentCell = document.createElement('td');
+            sentimentCell.textContent = stock.upvotes >= 0
+                ? stock.upvotes > 1
+                    ? '🐂 Bullish'
+                    : '🐻 Bearish'
+                : 'Unknown';
+
+            row.appendChild(tickerCell);
+            row.appendChild(mentionsCell);
+            row.appendChild(sentimentCell);
             tbody.appendChild(row);
         });
     } catch (error) {
@@ -216,7 +224,7 @@ async function fetchTopStocks() {
     }
 }
 
-// Dog API: https://dogapi.dog/api/v2/breeds and https://dog.ceo/api/breeds/image/random/10
+// Dog API
 async function fetchDogImages() {
     const wrapper = document.getElementById('dog-slide-wrapper');
     try {
@@ -254,23 +262,26 @@ async function fetchDogBreeds() {
         }
         const rawData = await response.json();
         
-        let breeds = rawData;
-        if (rawData && rawData.data && Array.isArray(rawData.data)) {
-            breeds = rawData.data;
-        } else if (!Array.isArray(rawData)) {
-            throw new Error('Unexpected API response format: not an array');
+        const breeds = Array.isArray(rawData.data)
+            ? rawData.data
+            : Array.isArray(rawData)
+                ? rawData
+                : [];
+        if (!breeds.length) {
+            throw new Error('Unexpected API response format: no breed list found');
         }
         
         breedMap = {};
         buttonContainer.innerHTML = '';
 
         breeds.slice(0, 18).forEach(breed => {
+            const breedName = breed.attributes?.name ?? breed.name ?? 'Unknown Breed';
             const button = document.createElement('button');
             button.className = 'breed-action';
-            button.textContent = breed.name;
-            button.dataset.breedName = breed.name;
+            button.textContent = breedName;
+            button.dataset.breedName = breedName;
             buttonContainer.appendChild(button);
-            breedMap[breed.name] = breed;
+            breedMap[breedName] = breed;
         });
 
         buttonContainer.addEventListener('click', event => {
@@ -289,18 +300,22 @@ function showBreedInfo(breed) {
     if (!breed) {
         return;
     }
-    document.getElementById('breed-title').textContent = `Name: ${breed.name}`;
-    document.getElementById('breed-description').textContent = breed.temperament || breed.bred_for || 'No description available.';
 
-    const lifeSpan = breed.life_span || '';
-    const match = lifeSpan.match(/(\d+)\D*(\d*)/);
-    const minLife = match ? match[1] : 'N/A';
-    const maxLife = match && match[2] ? match[2] : minLife;
+    const name = breed.attributes?.name ?? breed.name ?? 'Unknown Breed';
+    const description = breed.attributes?.description
+        || breed.temperament
+        || breed.bred_for
+        || 'No description available.';
+    const life = breed.attributes?.life;
+    const minLife = life?.min ?? 'N/A';
+    const maxLife = life?.max ?? minLife;
 
+    document.getElementById('breed-title').textContent = `Name: ${name}`;
+    document.getElementById('breed-description').textContent = description;
     document.getElementById('breed-min-life').textContent = minLife;
     document.getElementById('breed-max-life').textContent = maxLife;
     document.getElementById('breed-info').classList.remove('hidden');
-} 
+}
 
 
 // Initialize everything once the DOM is fully loaded
